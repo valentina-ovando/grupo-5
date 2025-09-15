@@ -1,4 +1,12 @@
-//Navegador-Bruno
-//Carrusel-Ramiro
-//Tarjetas-Conny
-//Footer-Valentina
+// NAVEGADOR - Bruno
+
+
+//CARRUSEL - Ramiro
+
+
+//TARJETAS - Conny
+
+
+//FOOTER - Valentina
+
+
