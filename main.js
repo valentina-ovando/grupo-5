@@ -1,3 +1,5 @@
+// NAVEGADOR - BRUNO
+
 // Crear elementos principales
 const nav = document.createElement('nav');
 nav.className = 'navbar navbar-expand-lg bg-body-tertiary';
@@ -123,3 +125,62 @@ nav.appendChild(container);
 
 // entra en el documento
 document.body.prepend(nav);
+
+// CARRUSEL - RAMIRO 
+
+
+
+// TARJETAS - CONNY
+
+// Columna contenedora
+let columna = document.createElement("div");
+columna.classList.add("col-4");
+
+// Tarjeta
+let card = document.createElement("div");
+card.classList.add("card");
+
+// Imagen de la tarjeta
+let img = document.createElement("img");
+img.src = "https://i.pinimg.com/originals/e3/7f/31/e37f31bad059c9439d22782e8d5907bc.jpg";
+img.alt = "Ropa de bebé";
+img.classList.add("card-img-top");
+card.appendChild(img);
+
+// Cuerpo de la tarjeta
+let cardBody = document.createElement("div");
+cardBody.classList.add("card-body");
+
+// Título de la tarjeta
+let titulo = document.createElement("h5");
+titulo.textContent = `${x.nombre} - ${x.marca}`;
+titulo.classList.add("card-title");
+cardBody.appendChild(titulo);
+
+// Texto de la tarjeta
+let p = document.createElement("p");
+p.classList.add("card-text");
+p.textContent = `${x.descrip}`;
+cardBody.appendChild(p);
+
+let p1 = document.createElement("p");
+p1.classList.add("card-text");
+p1.textContent = `Precio: $${x.precio} | Stock: ${x.stock}`;
+cardBody.appendChild(p1);
+
+// Botones
+let button = document.createElement("button");
+button.classList.add("btn", "btn-success");
+button.textContent = "Add";
+
+let botonUpdate = document.createElement("button");
+botonUpdate.classList.add("btn", "btn-secondary");
+botonUpdate.textContent = "Update";
+
+// Se agregan los botones al body
+cardBody.append(button, botonUpdate);
+
+// Se arma la tarjeta completa
+card.appendChild(cardBody);
+columna.appendChild(card);
+fila.appendChild(columna);

@@ -18,14 +18,48 @@
 
     <!--TARJETAS (CONNY)-->
 
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="container-fluid mt-3" id="contenedor"></div>
+            </div>
 
+            <div class="col-md-4">
+                <div class="mb-3" id="idGeneral">
+                    <input type="number" id="prodId" required class="form-control mt-3" placeholder="ID">
+                </div>
+
+                <div class="mb-3" id="nomGeneral">
+                    <input type="text" id="prodName" required class="form-control mt-3" placeholder="Nombre">
+                </div>
+
+                <input type="text" id="prodMarca" required class="form-control mt-3" placeholder="Marca">
+                <input type="text" id="prodDescrip" required class="form-control mt-3" placeholder="Descripción">
+                <input type="number" id="prodPrecio" required class="form-control mt-3" placeholder="Precio">
+                <input type="number" id="prodStock" required class="form-control mt-3" placeholder="Stock">
+
+                <div class="row">
+                    <div class="col-md-5">
+                        <button class="btn btn-primary mt-3" id="boton-crear"><i class="bi bi-check"></i></button>
+                        <button class="btn btn-secondary mt-3" id="boton-crear"><i class="bi bi-pencil"></i></button>
+                    </div>
+
+                    <div class="col-md-7">
+                        <p id="text-error" class="text-danger mt-3"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
     <!--FOOTER (VALEN)-->
 
 
+    <footer>
+        <div id="footer-valen"></div>
+    </footer>
+
     <script src="main.js"></script>
 </body>
-<footer>
-    <div id="footer-valen"></div>
-</footer>
 
 </html>
