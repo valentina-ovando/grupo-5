@@ -1,6 +1,7 @@
 // Crear elementos principales
 const nav = document.createElement('nav');
 nav.className = 'navbar navbar-expand-lg bg-body-tertiary';
+nav.style.backgroundColor = '#aec3b0'; // ✅ Color de fondo agregado
 
 const container = document.createElement('div');
 container.className = 'container-fluid';
@@ -11,7 +12,7 @@ brand.className = 'navbar-brand';
 brand.href = '#';
 brand.textContent = 'Navbar';
 
-// boton toggler
+// botón toggler
 const toggler = document.createElement('button');
 toggler.className = 'navbar-toggler';
 toggler.type = 'button';
@@ -41,7 +42,6 @@ const items = [
   { text: 'Disabled', href: '#', class: 'nav-link disabled', ariaDisabled: true }
 ];
 
-// agregar ítems
 items.forEach(item => {
   const li = document.createElement('li');
   li.className = 'nav-item';
@@ -73,21 +73,19 @@ const dropdownMenu = document.createElement('ul');
 dropdownMenu.className = 'dropdown-menu';
 
 ['Action', 'Another action', null, 'Something else here'].forEach(text => {
+  const li = document.createElement('li');
   if (text === null) {
     const divider = document.createElement('hr');
     divider.className = 'dropdown-divider';
-    const li = document.createElement('li');
     li.appendChild(divider);
-    dropdownMenu.appendChild(li);
   } else {
-    const li = document.createElement('li');
     const a = document.createElement('a');
     a.className = 'dropdown-item';
     a.href = '#';
     a.textContent = text;
     li.appendChild(a);
-    dropdownMenu.appendChild(li);
   }
+  dropdownMenu.appendChild(li);
 });
 
 dropdownLi.appendChild(dropdownToggle);
