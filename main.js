@@ -1,16 +1,16 @@
 // Crear elementos principales
 const nav = document.createElement('nav');
-nav.className = 'navbar navbar-expand-lg bg-body-tertiary';
-nav.style.backgroundColor = '#aec3b0';
+nav.className = 'navbar navbar-expand-lg navegacion';
+
 
 const container = document.createElement('div');
 container.className = 'container-fluid';
 
 // marca
 const brand = document.createElement('a');
-brand.className = 'navbar-brand';
+brand.className = 'navbar-brand marca-titulo';
 brand.href = '#';
-brand.textContent = 'Navbar';
+brand.textContent = 'MiniMundo';
 
 // boton toggler
 const toggler = document.createElement('button');
@@ -37,9 +37,9 @@ navList.className = 'navbar-nav me-auto mb-2 mb-lg-0';
 
 // objetos del menú
 const items = [
-  { text: 'Home', href: '#', class: 'nav-link active', aria: 'page' },
-  { text: 'Link', href: '#', class: 'nav-link' },
-  { text: 'Disabled', href: '#', class: 'nav-link disabled', ariaDisabled: true }
+  { text: 'Inicio', href: '#', class: 'nav-link active link-nav', aria: 'page' },
+  { text: 'Niños', href: '#', class: 'nav-link link-nav' },
+  { text: 'Niñas', href: '#', class: 'nav-link disabled link-nav', ariaDisabled: true }
 ];
 
 // agregar ítems
@@ -68,12 +68,12 @@ dropdownToggle.href = '#';
 dropdownToggle.role = 'button';
 dropdownToggle.setAttribute('data-bs-toggle', 'dropdown');
 dropdownToggle.setAttribute('aria-expanded', 'false');
-dropdownToggle.textContent = 'Dropdown';
+dropdownToggle.textContent = 'Categorias';
 
 const dropdownMenu = document.createElement('ul');
 dropdownMenu.className = 'dropdown-menu';
 
-['Action', 'Another action', null, 'Something else here'].forEach(text => {
+['Verano', 'invierno', null, 'Rebajas'].forEach(text => {
   if (text === null) {
     const divider = document.createElement('hr');
     divider.className = 'dropdown-divider';
@@ -97,19 +97,19 @@ navList.appendChild(dropdownLi);
 
 // formulario
 const form = document.createElement('form');
-form.className = 'd-flex';
+form.className = 'd-flex ';
 form.role = 'search';
 
 const input = document.createElement('input');
 input.className = 'form-control me-2';
 input.type = 'search';
-input.placeholder = 'Search';
+input.placeholder = 'Buscar';
 input.setAttribute('aria-label', 'Search');
 
 const button = document.createElement('button');
-button.className = 'btn btn-outline-success';
+button.className = 'btn btn-outline-success link-nav search';
 button.type = 'submit';
-button.textContent = 'Search';
+button.textContent = 'Buscar';
 
 form.appendChild(input);
 form.appendChild(button);
