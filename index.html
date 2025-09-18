@@ -18,42 +18,55 @@
 
     <!--TARJETAS (CONNY)-->
 
-    <div class="container-fluid">
+    <div id="contenedor" class="container"></div>
+
+    <p><strong>FILTROS: </strong></p>
+    <div class="container mb-4">
         <div class="row">
-            <div class="col-md-8">
-                <div class="container-fluid mt-3" id="contenedor"></div>
+            <div class="col-md-5">
+                <select class="form-control" id="propiedad">
+                    <option value="todos">Todos los productos</option>
+                    <option value="nombre">Nombre</option>
+                    <option value="marca">Marca</option>
+                    <option value="precio">Precio ($)</option>
+                </select>
             </div>
 
-            <div class="col-md-4">
-                <div class="mb-3" id="idGeneral">
-                    <input type="number" id="prodId" required class="form-control mt-3" placeholder="ID">
-                </div>
+            <div class="col-md-5">
+                <input class="form-control" type="text" id="valor" placeholder="Valor del filtro a aplicar">
+            </div>
 
-                <div class="mb-3" id="nomGeneral">
-                    <input type="text" id="prodName" required class="form-control mt-3" placeholder="Nombre">
-                </div>
-
-                <input type="text" id="prodMarca" required class="form-control mt-3" placeholder="Marca">
-                <input type="text" id="prodDescrip" required class="form-control mt-3" placeholder="Descripción">
-                <input type="number" id="prodPrecio" required class="form-control mt-3" placeholder="Precio">
-                <input type="number" id="prodStock" required class="form-control mt-3" placeholder="Stock">
-
-                <div class="row">
-                    <div class="col-md-5">
-                        <button class="btn btn-primary mt-3" id="boton-crear"><i class="bi bi-check"></i></button>
-                        <button class="btn btn-secondary mt-3" id="boton-crear"><i class="bi bi-pencil"></i></button>
-                    </div>
-
-                    <div class="col-md-7">
-                        <p id="text-error" class="text-danger mt-3"></p>
-                    </div>
-                </div>
+            <div class="col-md-2">
+                <button class="btn btn-light w-100" id="aplicarFiltro">Aplicar filtro</button>
             </div>
         </div>
     </div>
-    
-    <!--FOOTER (VALEN)-->
 
+    <!-- LISTADO DE PRODUCTOS SELECCIONADOS -->
+    <ol id="listado"></ol>
+
+    <table class="table table-striped table-bordered text-center align-middle">
+        <thead class="table">
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Marca</th>
+                <th>Descripción</th>
+                <th>Precio</th>
+                <th>ACCIONES</th>
+            </tr>
+        </thead>
+
+        <tbody id="tbody"></tbody>
+    </table>
+
+    <p class="text-danger">Subtotal (con IVA): $ <strong id="subtotal">0</strong></p>
+
+    <button class="btn btn-danger" id="reset">
+        <i class="bi bi-trash-fill"></i> Resetear
+    </button>
+
+    <!--FOOTER (VALEN)-->
 
     <footer>
         <div id="footer-valen"></div>

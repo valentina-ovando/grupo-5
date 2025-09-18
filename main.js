@@ -132,55 +132,190 @@ document.body.prepend(nav);
 
 // TARJETAS - CONNY
 
-// Columna contenedora
-let columna = document.createElement("div");
-columna.classList.add("col-4");
+class Persona {
+  constructor(nombre, apellido, dni, edad) {
+    this.nombre = nombre;
+    this.apellido = apellido;
+    this.dni = dni;
+    this.edad = edad;
+    this.productos = [];
+  }
 
-// Tarjeta
-let card = document.createElement("div");
-card.classList.add("card");
+  subTotal() {
+    let acum = 0;
+    this.productos.forEach(x => {
+      acum += x.precio;
+    });
+    // Se agrega IVA (21%)
+    return (acum * 1.21).toFixed(2);
+  }
 
-// Imagen de la tarjeta
-let img = document.createElement("img");
-img.src = "https://i.pinimg.com/originals/e3/7f/31/e37f31bad059c9439d22782e8d5907bc.jpg";
-img.alt = "Ropa de bebé";
-img.classList.add("card-img-top");
-card.appendChild(img);
+  agregarProducto(prod) {
+    this.productos.push(prod);
+  }
 
-// Cuerpo de la tarjeta
-let cardBody = document.createElement("div");
-cardBody.classList.add("card-body");
+  eliminarProducto(prod1) {
+    this.productos = this.productos.filter(p => p !== prod1);
+  }
 
-// Título de la tarjeta
-let titulo = document.createElement("h5");
-titulo.textContent = `${x.nombre} - ${x.marca}`;
-titulo.classList.add("card-title");
-cardBody.appendChild(titulo);
+  reset() {
+    this.productos = [];
+  }
 
-// Texto de la tarjeta
-let p = document.createElement("p");
-p.classList.add("card-text");
-p.textContent = `${x.descrip}`;
-cardBody.appendChild(p);
+  mostrarInfo() {
+    return `Nombre: ${this.nombre}\nApellido: ${this.apellido}\nDNI: ${this.dni}\nEdad: ${this.edad}`;
+  }
+}
 
-let p1 = document.createElement("p");
-p1.classList.add("card-text");
-p1.textContent = `Precio: $${x.precio} | Stock: ${x.stock}`;
-cardBody.appendChild(p1);
+const persona1 = new Persona("Josefina", "Sanchez", 48392379, 23);
 
-// Botones
-let button = document.createElement("button");
-button.classList.add("btn", "btn-success");
-button.textContent = "Add";
+class Producto {
+  constructor(id, nombre, marca, descrip, precio, stock) {
+    this.id = id;
+    this.nombre = nombre;
+    this.marca = marca;
+    this.descrip = descrip;
+    this.precio = precio;
+    this.stock = stock;
+  }
 
-let botonUpdate = document.createElement("button");
-botonUpdate.classList.add("btn", "btn-secondary");
-botonUpdate.textContent = "Update";
+  mostrarInfo() {
+    return `ID: ${this.id}\nNombre: ${this.nombre}\nMarca: ${this.marca}\nDescripción: ${this.descrip}\nPrecio: ${this.precio}\nStock: ${this.stock}`;
+  }
+}
 
-// Se agregan los botones al body
-cardBody.append(button, botonUpdate);
+let listaProd = [
+  new Producto(1, "Saco", "Cheeky", "Saco de peluche de peluche color beige claro", 25000, 5),
+  new Producto(2, "Remera", "Cheeky", "Remera color beige con puntos de color marrón", 10000, 10),
+  new Producto(3, "Pantalón", "Cheeky", "Pantalón de jean chupín color azul oscuro", 15000, 8)
+];
 
-// Se arma la tarjeta completa
-card.appendChild(cardBody);
-columna.appendChild(card);
-fila.appendChild(columna);
+function filtro(prop, val) {
+  let retorno;
+
+  if (prop === "todos") {
+    retorno = listaProd;
+  } else if (prop == "marca") {
+    retorno = listaProd.filter(x => x.marca === val);
+  } else if (prop == "nombre") {
+    retorno = listaProd.filter(x => x.nombre === val);
+  } else if (prop == "precio") {
+    val = parseFloat(val);
+    retorno = listaProd.filter(x => x.precio >= 0 && x.precio < val);
+  } else {
+    retorno = [];
+  }
+
+  return retorno;
+}
+
+// VARIABLES GLOBALES
+let contenedor = document.querySelector("#contenedor");
+let fila = document.createElement("div");
+fila.classList.add("row");
+contenedor.appendChild(fila);
+
+let subTotal = document.querySelector("#subtotal");
+let filtroDevuelto = listaProd; // Mostrar todos por defecto
+let tbody = document.querySelector("#tbody");
+
+// FILTROS
+let botonFiltro = document.querySelector("#aplicarFiltro");
+botonFiltro.addEventListener("click", function () {
+  let propiedad = document.querySelector("#propiedad").value;
+  let valor = document.querySelector("#valor").value;
+  filtroDevuelto = filtro(propiedad, valor);
+  mostrarProductos();
+});
+
+// FUNCIÓN PARA MOSTRAR PRODUCTOS (CARDS)
+function mostrarProductos() {
+  fila.innerHTML = "";
+
+  filtroDevuelto.forEach(x => {
+    let columna = document.createElement("div");
+    columna.classList.add("col-4");
+
+    let card = document.createElement("div");
+    card.classList.add("card", "mb-3");
+
+    // CREACIÓN DE LA IMAGEN PARA LAS TARJETAS
+    let img = document.createElement("img");
+    img.src = "https://i.pinimg.com/originals/e3/7f/31/e37f31bad059c9439d22782e8d5907bc.jpg";
+    img.alt = "Ropa de bebé";
+    img.classList.add("card-img-top");
+    card.appendChild(img);
+
+    let cardBody = document.createElement("div");
+    cardBody.classList.add("card-body");
+
+    let titulo = document.createElement("h5");
+    titulo.textContent = `${x.nombre} - ${x.marca}`;
+    titulo.classList.add("card-title");
+    cardBody.appendChild(titulo);
+
+    let p = document.createElement("p");
+    p.classList.add("card-text");
+    p.textContent = `${x.descrip}`;
+    cardBody.appendChild(p);
+
+    let p1 = document.createElement("p");
+    p1.classList.add("card-text");
+    p1.textContent = `Precio: $${x.precio} | Stock: ${x.stock}`;
+    cardBody.appendChild(p1);
+
+    let button = document.createElement("button");
+    button.classList.add("btn", "btn-light");
+    button.textContent = "Agregar";
+    button.addEventListener("click", function () {
+      persona1.agregarProducto(x);
+      mostrar();
+    });
+
+    cardBody.appendChild(button);
+    card.appendChild(cardBody);
+    columna.appendChild(card);
+    fila.appendChild(columna);
+  });
+}
+
+// FUNCIÓN PARA MOSTRAR TABLA DE PRODUCTOS SELECCIONADOS
+function mostrar() {
+  tbody.innerHTML = "";
+  persona1.productos.forEach(p => {
+    let tr = document.createElement("tr");
+
+    tr.innerHTML = `
+            <td>${p.id}</td>
+            <td>${p.nombre}</td>
+            <td>${p.marca}</td>
+            <td>${p.descrip}</td>
+            <td>$${p.precio}</td>
+        `;
+
+    let td6 = document.createElement("td");
+    let buttonEliminar = document.createElement("button");
+    buttonEliminar.classList.add("btn", "btn-danger");
+    buttonEliminar.innerHTML = `<i class="bi bi-x-circle-fill"></i>`;
+    buttonEliminar.addEventListener("click", function () {
+      persona1.eliminarProducto(p);
+      mostrar();
+    });
+
+    td6.appendChild(buttonEliminar);
+    tr.appendChild(td6);
+    tbody.appendChild(tr);
+  });
+
+  subTotal.textContent = persona1.subTotal();
+}
+
+// BOTÓN RESET
+let buttonReset = document.querySelector("#reset");
+buttonReset.addEventListener("click", function () {
+  persona1.reset();
+  mostrar();
+});
+
+// MOSTRAR PRODUCTOS AL CARGAR
+mostrarProductos();
