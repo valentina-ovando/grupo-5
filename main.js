@@ -107,7 +107,7 @@ input.placeholder = 'Buscar';
 input.setAttribute('aria-label', 'Search');
 
 const button = document.createElement('button');
-button.className = 'btn btn-outline-success link-nav search';
+button.className = 'btn btn-outline-success link-nav-serch search';
 button.type = 'submit';
 button.textContent = 'Buscar';
 
